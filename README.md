@@ -4,37 +4,8 @@ django-breadcrumbing
 django-breadcrumbing is a Django app to generate HTML breadcrumbs from
 URL paths. 
 
-e.g. for `https://themusicsecret.com/reference/instrument/`, generates a markup
-bread-crumb navigation as a list:
-
-~~~ html
-<nav aria-label="breadcrumb">
-    <ol class="breadcrumb alert alert-success" itemprop="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
-		 <li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-			 <a itemprop="item" href="https://themusicsecret.com">
-			 <span itemprop="name">Home</span>
-			 <meta itemprop="position" content="1" />
-			 </a>
-		 </li>
-		 <li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-
-			 <a itemprop="item" href="https://themusicsecret.com/reference/">
-			 <span itemprop="name">Reference</span>
-			 <meta itemprop="position" content="2" />
-			 </a>
-
-		 </li>
-		 <li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-
-			 <a itemprop="item" href="https://themusicsecret.com/reference/instrument/">
-			 <span itemprop="name">Instrument</span>
-			 <meta itemprop="position" content="3" />
-			 </a>
-
-		 </li>
-	</ol>
-</nav>
-~~~
+At `https://themusicsecret.com/reference/instrument/`, it shows:
+`Home > Reference > Instrument`.
 
 # Quick start
 
@@ -75,7 +46,7 @@ Include the `breadcrumbs.html` template code.
 	{% block breadcrumbs %}
 	{% if breadcrumbs %}
 	<div class="container">
-	    {% include "partials/breadcrumbs.html" with breadcrumbs=breadcrumbs%}
+	    {% include "breadcrumbing/breadcrumbs.html" with breadcrumbs=breadcrumbs%}
 	</div>
 	{% endif %}
 	{% endblock %}
