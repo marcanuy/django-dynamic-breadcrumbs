@@ -1,4 +1,4 @@
-Polls
+django-breadcrumbing
 =====
 
 django-breadcrumbing is a Django app to generate HTML breadcrumbs from
