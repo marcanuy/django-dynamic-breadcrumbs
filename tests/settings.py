@@ -8,7 +8,7 @@ DATABASES = {
 
 INSTALLED_APPS = (
     'django.contrib.contenttypes',
-    'breadcrumbing',
+    'dynamic_breadcrumbs',
     'tests',
 )
 

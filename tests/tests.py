@@ -1,6 +1,6 @@
 from django.test import TestCase, override_settings
 
-from breadcrumbing.utils import Breadcrumbs, BreadcrumbsItem
+from dynamic_breadcrumbs.utils import Breadcrumbs, BreadcrumbsItem
 from tests.models import Continent, Country, City
 
 @override_settings(ROOT_URLCONF='tests.urls')

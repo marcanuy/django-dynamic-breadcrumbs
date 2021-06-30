@@ -1,4 +1,4 @@
-from breadcrumbing.utils import Breadcrumbs
+from dynamic_breadcrumbs.utils import Breadcrumbs
 
 def breadcrumbs(request):
     """

@@ -1,8 +1,8 @@
-django-breadcrumbing
+django-dynamic-breadcrumbs
 =====
 
-django-breadcrumbing is a Django app to generate HTML breadcrumbs from
-URL paths. 
+django-dynamic-breadcrumbs is a Django app to generate HTML breadcrumbs
+dynamically from URL paths. 
 
 At `https://themusicsecret.com/reference/instrument/`, it shows:
 `Home > Reference > Instrument`.
@@ -11,16 +11,16 @@ At `https://themusicsecret.com/reference/instrument/`, it shows:
 
 ## 1. Add to settings
 
-Add "breadcrumbing" to your INSTALLED_APPS setting like this::
+Add "dynamic_breadcrumbs" to your INSTALLED_APPS setting like this::
 
     INSTALLED_APPS = [
         ...
-        'breadcrumbing',
+        'dynamic_breadcrumbs',
     ]
 
 ## 2. Add context processor
 
-Add `"reference.context_processors.breadcrumbs"` the breadcrumbing context processor to your settings like this::
+Add `"dynamic_breadcrumbs.context_processors.breadcrumbs"` the **dynamic-breadcrumbs** context processor to your settings like this::
 
 ~~~ python
 TEMPLATES = [
@@ -31,7 +31,7 @@ TEMPLATES = [
         "OPTIONS": {
             "context_processors": [
 				#...
-                "reference.context_processors.breadcrumbs",
+                "dynamic_breadcrumbs.context_processors.breadcrumbs",
             ],
         },
     },
@@ -46,7 +46,7 @@ Include the `breadcrumbs.html` template code.
 	{% block breadcrumbs %}
 	{% if breadcrumbs %}
 	<div class="container">
-	    {% include "breadcrumbing/breadcrumbs.html" with breadcrumbs=breadcrumbs%}
+	    {% include "dynamic_breadcrumbs/breadcrumbs.html" with breadcrumbs=breadcrumbs%}
 	</div>
 	{% endif %}
 	{% endblock %}
