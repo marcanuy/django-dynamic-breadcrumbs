@@ -1,0 +1,4 @@
+include LICENSE
+include README.me
+recursive-include breadcrumbing/templates *
+recursive-include docs *

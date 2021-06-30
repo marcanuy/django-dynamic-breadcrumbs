@@ -1,0 +1,35 @@
+{% load i18n %}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb alert alert-success" itemprop="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+	<li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+	    <a itemprop="item" href="/">
+		<span itemprop="name">Home</span>
+		<meta itemprop="position" content="1" />
+	    </a>
+	</li>
+	
+	{% for item in breadcrumbs %}
+	{% if forloop.last %}
+	<li class="breadcrumb-item active" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" aria-current="page">
+	    <span itemprop="name">{{ item.name }}</span>
+	    <meta itemprop="position" content='{{item.position}}' />
+	</li> 
+	{% else %}
+	<li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+	    {% if item.resolved %}
+	    <a itemprop="item" href="{{item.url}}">
+		<span itemprop="name">{{item.name}}</span>
+		<meta itemprop="position" content="{{item.position}}" />
+	    </a>
+	    {%else%}
+	    <span itemprop="item">
+		<span itemprop="name">{{item.name}}</span>
+		<meta itemprop="position" content="{{item.position}}" />
+	    </span>
+	    {%endif%}
+	</li>
+	{% endif %}
+    	{% endfor %}
+    </ol>
+</nav>
