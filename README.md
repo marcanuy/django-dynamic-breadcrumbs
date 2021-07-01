@@ -64,6 +64,10 @@ Include the `dynamic_breadcrumbs/breadcrumbs.html` in your base template.
 Now each time you visit a page which makes use of the above template,
 it will have the breadcrumbs generated from the URL path.
 
+## Documentation
+
+Full docs at: https://django-dynamic-breadcrumbs.readthedocs.io/
+
 ## License
 
 MIT
