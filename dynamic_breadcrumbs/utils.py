@@ -1,15 +1,12 @@
 from django.urls import resolve, Resolver404
-from urllib.parse import urlparse, urljoin 
+from urllib.parse import urljoin
 
 
 class Breadcrumbs:
     def __init__(self, base_url="", path=None):
-        self.base_url=base_url
+        self.base_url = base_url
         self.path = path
         self.items = []
-
-    def add(self, path):
-        self.items[path] = urljoin(path_partial, path_item+"/")
 
     def get_items(self):
         if not self.items:
@@ -20,12 +17,12 @@ class Breadcrumbs:
         return [item.as_dict() for item in self.get_items()]
 
     def _split_path(self, path=None):
-        """ Returns a list of the path components between slashes """
+        """Returns a list of the path components between slashes"""
         if not path:
             path = self.path
-        if path.endswith('/'):
+        if path.endswith("/"):
             path = path[:-1]
-        if path.startswith('/'):
+        if path.startswith("/"):
             path = path[1:]
         result = path.split("/")
         return result
@@ -33,8 +30,10 @@ class Breadcrumbs:
     def _fill_items(self):
         path = "/"
         for i, item in enumerate(self._split_path()):
-            path = urljoin(path, item+"/")
-            b_item = BreadcrumbsItem(base_url=self.base_url, name_raw=item, path=path, position=i+1)
+            path = urljoin(path, item + "/")
+            b_item = BreadcrumbsItem(
+                base_url=self.base_url, name_raw=item, path=path, position=i + 1
+            )
             self.items.append(b_item)
 
 
@@ -61,15 +60,16 @@ class BreadcrumbsItem:
         # if self.resolved_url:
         #     # check view
         return self.name_raw
-            
+
     def as_dict(self):
         result = {
-            'position': self.position,
-            'name': self.get_name(),
-            'path': self.path,
-            'url': self.get_url(),
-            'resolved': self.resolved_url,
+            "position": self.position,
+            "name": self.get_name(),
+            "path": self.path,
+            "url": self.get_url(),
+            "resolved": self.resolved_url,
         }
         return result
+
     def __str__(self):
         return "{}: {} {}".format(self.position, self.name_raw, self.path)

@@ -2,6 +2,5 @@ pip
 wheel
 setuptools
 twine
-Sphinx
 black
 flake8

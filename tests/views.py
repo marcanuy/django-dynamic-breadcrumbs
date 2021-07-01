@@ -1,15 +1,19 @@
+from django.shortcuts import get_object_or_404
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 
 from tests.models import Continent, Country, City
 
+
 class ContinentListView(ListView):
     model = Continent
-    slug_field = 'cotinent_slug'
+    slug_field = "cotinent_slug"
+
 
 class ContinentDetailView(DetailView):
     model = Continent
-    slug_field = 'cotinent_slug'
+    slug_field = "cotinent_slug"
+
 
 class CountryListView(ListView):
     def setup(self, request, *args, **kwargs):
@@ -25,9 +29,11 @@ class CountryListView(ListView):
         qs = self.continent.country_set.all()
         return qs
 
+
 class CountryDetailView(DetailView):
     model = Country
-    slug_field = 'country_slug'
+    slug_field = "country_slug"
+
 
 class CityListView(ListView):
     pass
@@ -35,4 +41,4 @@ class CityListView(ListView):
 
 class CityDetailView(DetailView):
     model = City
-    slug_field = 'city_slug'
+    slug_field = "city_slug"

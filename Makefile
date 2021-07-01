@@ -23,5 +23,5 @@ clean:
 	find . -name "__pycache__" -exec rm -rf {} -v \;
 
 format:
-	flake8 .
 	black .
+	flake8 .
