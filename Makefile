@@ -1,10 +1,11 @@
 dev-deps:
+	python -m pip install --upgrade pip
 	pip install -r requirements/dev.txt
 
-dist-build-package: dev-deps
-	python3.8 setup.py sdist
+dist-build-package:
+	python setup.py sdist
 
-dist-check:  dist-build-package
+dist-check:
 	twine check dist/*
 
 dist-upload-test:
