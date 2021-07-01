@@ -1,6 +1,7 @@
 django-dynamic-breadcrumbs
 =====
 
+[![Django CI](https://github.com/marcanuy/django-dynamic-breadcrumbs/actions/workflows/django.yml/badge.svg)](https://github.com/marcanuy/django-dynamic-breadcrumbs/actions/workflows/django.yml)
 [![PyPI version](https://badge.fury.io/py/django-dynamic-breadcrumbs.svg)](https://badge.fury.io/py/django-dynamic-breadcrumbs)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![Downloads](https://pepy.tech/badge/django-dynamic-breadcrumbs)](https://pepy.tech/project/django-dynamic-breadcrumbs)
