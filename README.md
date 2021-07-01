@@ -9,8 +9,8 @@ django-dynamic-breadcrumbs
 django-dynamic-breadcrumbs is a Django app to generate HTML breadcrumbs
 dynamically from URL paths. 
 
-At `https://themusicsecret.com/reference/instrument/`, it shows:
-`Home > Reference > Instrument`.
+At `https://example.com/reference/instrument/guitar/`, shows:
+`Home > Reference > Instrument > Guitar`.
 
 # Quick start
 
