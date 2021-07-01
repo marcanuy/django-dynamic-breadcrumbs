@@ -1,6 +1,7 @@
 from django.urls import resolve, Resolver404
 from urllib.parse import urljoin
 
+from . import app_settings
 
 class Breadcrumbs:
     def __init__(self, base_url="", path=None):
@@ -28,6 +29,16 @@ class Breadcrumbs:
         return result
 
     def _fill_items(self):
+        # add home
+        b_item = BreadcrumbsItem(
+            base_url=self.base_url,
+            name_raw=app_settings.DYNAMIC_BREADCRUMBS_HOME_LABEL,
+            path="/",
+            position=1
+        )
+        self.items.append(b_item)
+
+        # add paths
         path = "/"
         for i, item in enumerate(self._split_path()):
             path = urljoin(path, item + "/")

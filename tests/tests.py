@@ -37,14 +37,14 @@ class BreadcrumbsTests(GenericModelTestCase):
 
         self.assertEqual(paths, expected_result)
 
-    def test_process_all_paths(self):
+    def test_process_all_paths_including_home(self):
         base_url = "https://example.com"
         path = "/scale/minor-scale/c"
         breadcrumbs = Breadcrumbs(base_url=base_url, path=path)
 
         result = breadcrumbs.get_items()
 
-        self.assertEqual(len(result), 3)
+        self.assertEqual(len(result), 4)
 
     def test_as_list(self):
         path = "/continent/some-continent/"
@@ -52,10 +52,12 @@ class BreadcrumbsTests(GenericModelTestCase):
 
         result = breadcrumbs.as_list()
 
-        self.assertEqual(result[0]["name"], "continent")
+        self.assertEqual(result[0]["name"], "Home")
         self.assertEqual(result[0]["resolved"], True)
-        self.assertEqual(result[1]["name"], "some-continent")
+        self.assertEqual(result[1]["name"], "continent")
         self.assertEqual(result[1]["resolved"], True)
+        self.assertEqual(result[2]["name"], "some-continent")
+        self.assertEqual(result[2]["resolved"], True)
 
 
 class BreadcrumbsItemTests(GenericModelTestCase):

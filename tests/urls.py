@@ -10,6 +10,7 @@ from tests.views import (
 )
 
 urlpatterns = [
+    path("", ContinentListView.as_view(), name="homepage"),
     path("continent/", ContinentListView.as_view(), name="continent-list"),
     path(
         "continent/<slug:continent_slug>/",

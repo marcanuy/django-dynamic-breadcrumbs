@@ -2,13 +2,6 @@
 
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb alert alert-success" itemprop="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
-	<li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-	    <a itemprop="item" href="/">
-		<span itemprop="name">Home</span>
-		<meta itemprop="position" content="1" />
-	    </a>
-	</li>
-	
 	{% for item in breadcrumbs %}
 	{% if forloop.last %}
 	<li class="breadcrumb-item active" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" aria-current="page">
