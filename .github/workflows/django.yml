@@ -28,10 +28,11 @@ jobs:
 
     - name: Run Tests
       run: |
-        coverage run --branch --source=dynamic_breadcrumbs ./runtests.py
+        coverage run --source=dynamic_breadcrumbs ./runtests.py
 
     - name: Coveralls
-      uses: coverallsapp/github-action@master
-      with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
-        path-to-lcov: ./.coverage
+      run: coveralls
+    #   uses: coverallsapp/github-action@master
+    #   with:
+    #     github-token: ${{ secrets.GITHUB_TOKEN }}
+    #     path-to-lcov: ./.coverage
