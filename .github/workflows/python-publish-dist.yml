@@ -14,7 +14,7 @@ on:
 
 jobs:
   deploy:
-    environment: pypi
+    environment: CI
     runs-on: ubuntu-latest
 
     steps:
