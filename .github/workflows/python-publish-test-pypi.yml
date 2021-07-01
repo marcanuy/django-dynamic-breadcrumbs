@@ -3,7 +3,11 @@
 
 name: Upload Python Package To Test Pypi
 
-on: push
+on:
+  push:
+    paths-ignore:
+      - "docs/**"
+      - "*.md"
 
 jobs:
   deploy:

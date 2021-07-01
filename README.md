@@ -5,9 +5,10 @@ django-dynamic-breadcrumbs
 [![PyPI version](https://img.shields.io/pypi/v/django-dynamic-breadcrumbs)](https://pypi.org/project/django-dynamic-breadcrumbs/)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![Downloads](https://pepy.tech/badge/django-dynamic-breadcrumbs)](https://pepy.tech/project/django-dynamic-breadcrumbs)
+[![Documentation Status](https://readthedocs.org/projects/django-dynamic-breadcrumbs/badge/?version=latest)](https://django-dynamic-breadcrumbs.readthedocs.io/en/latest/?badge=latest)
 
-django-dynamic-breadcrumbs is a Django app to generate HTML breadcrumbs
-dynamically from URL paths. 
+`django-dynamic-breadcrumbs` is a Django app to generate HTML breadcrumbs
+dynamically from URL paths.
 
 At `https://example.com/reference/instrument/guitar/`, shows:
 `Home > Reference > Instrument > Guitar`.

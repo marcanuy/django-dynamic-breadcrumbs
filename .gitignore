@@ -49,3 +49,6 @@ geckodriver.log
 db.sqlite3
 .coverage
 .env
+.coverage.*
+TEST-*
+_docs
