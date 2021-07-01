@@ -1,5 +1,6 @@
-dev-deps:
+install-pip:
 	python -m pip install --upgrade pip
+dev-deps: install-pip
 	pip install -r requirements/dev.txt
 
 dist-build-package:
@@ -14,7 +15,7 @@ dist-upload-test:
 dist-upload: dist-build-package
 	twine upload dist/*
 
-tests-deps:
+tests-deps: install-pip
 	pip install -r requirements/test.txt
 
 tests-run:

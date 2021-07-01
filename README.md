@@ -2,6 +2,7 @@ django-dynamic-breadcrumbs
 =====
 
 [![Django CI](https://github.com/marcanuy/django-dynamic-breadcrumbs/actions/workflows/django.yml/badge.svg)](https://github.com/marcanuy/django-dynamic-breadcrumbs/actions/workflows/django.yml)
+[![Coverage Status](https://coveralls.io/repos/github/marcanuy/django-dynamic-breadcrumbs/badge.svg?branch=main)](https://coveralls.io/github/marcanuy/django-dynamic-breadcrumbs?branch=main)
 [![PyPI version](https://img.shields.io/pypi/v/django-dynamic-breadcrumbs)](https://pypi.org/project/django-dynamic-breadcrumbs/)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![Downloads](https://pepy.tech/badge/django-dynamic-breadcrumbs)](https://pepy.tech/project/django-dynamic-breadcrumbs)
@@ -18,7 +19,7 @@ At `https://example.com/reference/instrument/guitar/`, shows:
 ## 1. Install
 
 ~~~
-pip install django-dynamic-breadcrumbs==0.2
+pip install django-dynamic-breadcrumbs
 ~~~
 
 ## 2. Add to settings
