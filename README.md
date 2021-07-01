@@ -1,6 +1,8 @@
 django-dynamic-breadcrumbs
 =====
 
+[![Downloads](https://pepy.tech/badge/django-dynamic-breadcrumbs)](https://pepy.tech/project/django-dynamic-breadcrumbs)
+
 django-dynamic-breadcrumbs is a Django app to generate HTML breadcrumbs
 dynamically from URL paths. 
 
