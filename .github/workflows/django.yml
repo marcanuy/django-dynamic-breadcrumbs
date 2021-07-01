@@ -31,6 +31,8 @@ jobs:
         coverage run --source=dynamic_breadcrumbs ./runtests.py
 
     - name: Coveralls
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: coveralls
     #   uses: coverallsapp/github-action@master
     #   with:
