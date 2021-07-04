@@ -17,7 +17,7 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'django-dynamic-breadcrumbs'
+project = 'Dynamic Breadcrumbs'
 copyright = '2021, Marcelo Canina'
 author = 'Marcelo Canina'
 
@@ -49,3 +49,13 @@ html_theme = 'alabaster'
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
+
+html_theme_options = {
+    "description": "Generate Breadcrumbs from URLs in Django",
+    "github_user": "marcanuy",
+    "github_repo": "django-dynamic-breadcrumbs",
+    "fixed_sidebar": True,
+    "github_banner": True,
+    "github_button": True,
+
+}
