@@ -54,8 +54,8 @@ html_theme_options = {
     "description": "Generate Breadcrumbs from URLs in Django",
     "github_user": "marcanuy",
     "github_repo": "django-dynamic-breadcrumbs",
-    "fixed_sidebar": True,
+    #"fixed_sidebar": True,
     "github_banner": True,
-    "github_button": True,
+    #"github_button": True,
 
 }
