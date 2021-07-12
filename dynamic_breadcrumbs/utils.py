@@ -3,6 +3,7 @@ from urllib.parse import urljoin
 
 from . import app_settings
 
+
 class Breadcrumbs:
     def __init__(self, base_url="", path=None):
         self.base_url = base_url
@@ -27,7 +28,7 @@ class Breadcrumbs:
             path = path[1:]
 
         # avoid splitting and returning a list with an empty string
-        if path == '':
+        if path == "":
             return list()
 
         result = path.split("/")
@@ -35,12 +36,12 @@ class Breadcrumbs:
 
     def _add_home(self):
         b_item = BreadcrumbsItem(
-                base_url=self.base_url,
-                name_raw=app_settings.DYNAMIC_BREADCRUMBS_HOME_LABEL,
-                path="/",
-                position=1
-            )
-        self.items.append(b_item)            
+            base_url=self.base_url,
+            name_raw=app_settings.DYNAMIC_BREADCRUMBS_HOME_LABEL,
+            path="/",
+            position=1,
+        )
+        self.items.append(b_item)
 
     def _fill_items(self):
         path = "/"
@@ -53,8 +54,8 @@ class Breadcrumbs:
         # or if location is not home, always shows home in breadcrumbs
         if (app_settings.DYNAMIC_BREADCRUMBS_SHOW_AT_BASE_PATH and not parts) or parts:
             self._add_home()
-            
-        if parts==[]:
+
+        if parts == []:
             return
 
         for i, item in enumerate(parts):

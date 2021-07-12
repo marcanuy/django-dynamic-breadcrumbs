@@ -69,7 +69,7 @@ class BreadcrumbsTests(GenericModelTestCase):
         self.assertEqual(result[2]["resolved"], True)
 
     def test_as_list_only_home(self):
-        app_settings.DYNAMIC_BREADCRUMBS_SHOW_AT_BASE_PATH=True
+        app_settings.DYNAMIC_BREADCRUMBS_SHOW_AT_BASE_PATH = True
         path = "/"
         breadcrumbs = Breadcrumbs(path=path)
 
@@ -78,7 +78,7 @@ class BreadcrumbsTests(GenericModelTestCase):
         self.assertEqual(len(result), 1)
 
     def test_as_list_not_showing_at_home(self):
-        app_settings.DYNAMIC_BREADCRUMBS_SHOW_AT_BASE_PATH=False
+        app_settings.DYNAMIC_BREADCRUMBS_SHOW_AT_BASE_PATH = False
         path = "/"
         breadcrumbs = Breadcrumbs(path=path)
 
@@ -87,16 +87,16 @@ class BreadcrumbsTests(GenericModelTestCase):
         self.assertEqual(len(result), 0)
 
     def test_show_home_at_base_url(self):
-        app_settings.DYNAMIC_BREADCRUMBS_SHOW_AT_BASE_PATH=True
+        app_settings.DYNAMIC_BREADCRUMBS_SHOW_AT_BASE_PATH = True
         path = "/"
         breadcrumbs = Breadcrumbs(path=path)
         print(app_settings.DYNAMIC_BREADCRUMBS_SHOW_AT_BASE_PATH)
         result = breadcrumbs.as_list()
 
         self.assertEqual(len(result), 1)
-        
+
     def test_hide_home_at_base_url(self):
-        app_settings.DYNAMIC_BREADCRUMBS_SHOW_AT_BASE_PATH=False
+        app_settings.DYNAMIC_BREADCRUMBS_SHOW_AT_BASE_PATH = False
         path = "/"
         breadcrumbs = Breadcrumbs(path=path)
 
@@ -104,7 +104,7 @@ class BreadcrumbsTests(GenericModelTestCase):
 
         print(result)
         self.assertEqual(len(result), 0)
-        
+
 
 class BreadcrumbsItemTests(GenericModelTestCase):
     def test_get_resolved_url_metadata_resolves_valid_path(self):
