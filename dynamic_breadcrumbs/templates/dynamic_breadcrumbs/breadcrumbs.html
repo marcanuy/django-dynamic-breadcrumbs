@@ -11,15 +11,14 @@
 	{% else %}
 	<li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
 	    {% if item.resolved %}
-	    <a itemprop="item" href="{{item.url}}">
+	    <a itemprop="item" href="{{item.url}}" >
 		<span itemprop="name">{{item.name}}</span>
-		<meta itemprop="position" content="{{item.position}}" />
 	    </a>
+	    <meta itemprop="position" content="{{item.position}}" />
 	    {%else%}
-	    <span itemprop="item">
-		<span itemprop="name">{{item.name}}</span>
-		<meta itemprop="position" content="{{item.position}}" />
-	    </span>
+	    <span itemprop="name">{{item.name}}</span>
+	    <meta itemprop="position" content="{{item.position}}" />
+
 	    {%endif%}
 	</li>
 	{% endif %}
