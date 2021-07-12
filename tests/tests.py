@@ -60,7 +60,7 @@ class BreadcrumbsTests(GenericModelTestCase):
 
         result = breadcrumbs.as_list()
 
-        self.assertEqual(result[0]["name"], "Home")
+        self.assertEqual(result[0]["name"], app_settings.DYNAMIC_BREADCRUMBS_HOME_LABEL)
         self.assertEqual(result[0]["resolved"], True)
         self.assertEqual(result[1]["name"], "continent")
         self.assertEqual(result[1]["resolved"], True)
