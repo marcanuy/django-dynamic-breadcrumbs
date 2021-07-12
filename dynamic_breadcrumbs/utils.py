@@ -46,9 +46,7 @@ class Breadcrumbs:
     def _fill_items(self):
         path = "/"
         parts = self._split_path()
-        print("show?: {}".format(app_settings.DYNAMIC_BREADCRUMBS_SHOW_AT_BASE_PATH))
-        print("parts:{}".format(parts))
-        print(not parts)
+
         # add home
         # if have to show home item, and location is home, shows it
         # or if location is not home, always shows home in breadcrumbs

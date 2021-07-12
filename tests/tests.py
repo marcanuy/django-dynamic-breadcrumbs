@@ -90,7 +90,6 @@ class BreadcrumbsTests(GenericModelTestCase):
         app_settings.DYNAMIC_BREADCRUMBS_SHOW_AT_BASE_PATH = True
         path = "/"
         breadcrumbs = Breadcrumbs(path=path)
-        print(app_settings.DYNAMIC_BREADCRUMBS_SHOW_AT_BASE_PATH)
         result = breadcrumbs.as_list()
 
         self.assertEqual(len(result), 1)
@@ -102,7 +101,6 @@ class BreadcrumbsTests(GenericModelTestCase):
 
         result = breadcrumbs.as_list()
 
-        print(result)
         self.assertEqual(len(result), 0)
 
 
