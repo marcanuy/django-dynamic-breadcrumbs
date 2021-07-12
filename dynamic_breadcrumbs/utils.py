@@ -25,6 +25,11 @@ class Breadcrumbs:
             path = path[:-1]
         if path.startswith("/"):
             path = path[1:]
+
+        # avoid splitting and returning a list with an empty string
+        if path == '':
+            return list()
+
         result = path.split("/")
         return result
 
@@ -40,7 +45,13 @@ class Breadcrumbs:
 
         # add paths
         path = "/"
-        for i, item in enumerate(self._split_path()):
+        parts = self._split_path()
+
+        # if no parts to process, just return home part
+        if parts==[]:
+            return
+
+        for i, item in enumerate(parts):
             path = urljoin(path, item + "/")
             b_item = BreadcrumbsItem(
                 base_url=self.base_url, name_raw=item, path=path, position=i + 1
