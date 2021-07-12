@@ -33,28 +33,34 @@ class Breadcrumbs:
         result = path.split("/")
         return result
 
-    def _fill_items(self):
-        # add home
+    def _add_home(self):
         b_item = BreadcrumbsItem(
-            base_url=self.base_url,
-            name_raw=app_settings.DYNAMIC_BREADCRUMBS_HOME_LABEL,
-            path="/",
-            position=1
-        )
-        self.items.append(b_item)
+                base_url=self.base_url,
+                name_raw=app_settings.DYNAMIC_BREADCRUMBS_HOME_LABEL,
+                path="/",
+                position=1
+            )
+        self.items.append(b_item)            
 
-        # add paths
+    def _fill_items(self):
         path = "/"
         parts = self._split_path()
-
-        # if no parts to process, just return home part
+        print("show?: {}".format(app_settings.DYNAMIC_BREADCRUMBS_SHOW_AT_BASE_PATH))
+        print("parts:{}".format(parts))
+        print(not parts)
+        # add home
+        # if have to show home item, and location is home, shows it
+        # or if location is not home, always shows home in breadcrumbs
+        if (app_settings.DYNAMIC_BREADCRUMBS_SHOW_AT_BASE_PATH and not parts) or parts:
+            self._add_home()
+            
         if parts==[]:
             return
 
         for i, item in enumerate(parts):
             path = urljoin(path, item + "/")
             b_item = BreadcrumbsItem(
-                base_url=self.base_url, name_raw=item, path=path, position=i + 1
+                base_url=self.base_url, name_raw=item, path=path, position=i + 2
             )
             self.items.append(b_item)
 
