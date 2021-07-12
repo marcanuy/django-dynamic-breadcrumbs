@@ -20,7 +20,7 @@ breadcrumb list.
 DYNAMIC_BREADCRUMBS_SHOW_AT_BASE_PATH
 -------------------------------------
 
-Default: ``'False'``
+Default: ``False``
 
 Wheter to show or hide breadcrumbs at site's root.
 
