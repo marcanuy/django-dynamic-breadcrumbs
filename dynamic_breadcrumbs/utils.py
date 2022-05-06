@@ -1,5 +1,7 @@
-from django.urls import resolve, Resolver404
 from urllib.parse import urljoin
+
+from django.apps import apps
+from django.urls import Resolver404, resolve
 
 from . import app_settings
 
@@ -84,8 +86,11 @@ class BreadcrumbsItem:
         return result
 
     def get_name(self):
-        # if self.resolved_url:
-        #     # check view
+        if self.position == 2 and app_settings.DYNAMIC_BREADCRUMBS_SHOW_VERBOSE_NAME:
+            try:
+                return apps.get_app_config(self.name_raw).verbose_name
+            except:
+                pass
         return self.name_raw
 
     def as_dict(self):
