@@ -85,6 +85,10 @@ class Breadcrumbs:
 
     def validate_path(self, path):
         """Validate the path to ensure it matches an expected pattern and is within allowed limits."""
+        if not isinstance(path, str):
+            logger.warning("Invalid path type provided: %s", type(path))
+            return ""
+
         # Ensure the path contains only alphanumeric characters, dashes, underscores, and slashes
         if not re.match(r'^[a-zA-Z0-9_\-/]*$', path):
             logger.warning("Invalid path provided: %s", path)
@@ -103,6 +107,7 @@ class Breadcrumbs:
                 return ""
 
         return path
+
 
 
 class BreadcrumbsItem:
