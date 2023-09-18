@@ -133,7 +133,7 @@ class BreadcrumbsItem:
         if self.position == 2 and app_settings.DYNAMIC_BREADCRUMBS_SHOW_VERBOSE_NAME:
             try:
                 return apps.get_app_config(self.name_raw).verbose_name
-            except:
+            except Exception:
                 pass
         return self.name_raw
 
