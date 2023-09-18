@@ -19,7 +19,7 @@ tests-deps: install-pip
 	pip install -r requirements/test.txt
 
 tests-run:
-	PYTHONPATH=$$PWD:$$PYTHONPATH DJANGO_SETTINGS_MODULE=tests.settings ~/.virtualenvs/django-dynamic-breadcrumbs/bin/django-admin test
+	PYTHONPATH=$$PWD:$$PYTHONPATH DJANGO_SETTINGS_MODULE=tests.settings django-admin test
 clean:
 	rm -fr build dist
 	find . -name "*~" -exec rm {} -v \;
