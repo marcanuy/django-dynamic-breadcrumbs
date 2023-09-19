@@ -10,14 +10,7 @@ DATABASES = {
     },
 }
 
-INSTALLED_APPS = (
-    "django.contrib.contenttypes",
-    "dynamic_breadcrumbs",
-)
-
 ALLOWED_HOSTS = ["www.example.com"]
-
-MIDDLEWARE = []
 
 SECRET_KEY = "foobar"
 
