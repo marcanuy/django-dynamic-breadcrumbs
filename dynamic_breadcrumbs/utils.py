@@ -12,10 +12,6 @@ from django.conf import settings
 
 logger = logging.getLogger(__name__)
 
-#ALLOWED_BASE_URLS = [settings.ALLOWED_HOSTS]  # Add your allowed base URLs here
-MAX_PATH_DEPTH = 5
-MAX_PATH_COMPONENT_LENGTH = 50
-
 
 def sanitize_url(url):
     """Sanitize the URL to prevent malicious content."""
@@ -33,7 +29,7 @@ def validate_path(path):
         logger.warning("Invalid path type provided: %s", type(path))
         return ""
 
-    if app_settings.PATH_ONLY_ALPHANUMERIC:
+    if app_settings.PATH_ALPHANUMERIC:
         # Ensure the path contains only alphanumeric characters, dashes, underscores, and slashes
         if not re.match(r'^[a-zA-Z0-9_\-/]*$', path):
             logger.warning("Invalid path provided: %s", path)
@@ -41,13 +37,13 @@ def validate_path(path):
 
     components = path.split('/')
     # Check path depth
-    if len(components) > MAX_PATH_DEPTH:
+    if len(components) > app_settings.PATH_MAX_DEPTH:
         logger.warning("Path depth exceeded for: %s", path)
         return ""
 
     # Check each path component's length
     for component in components:
-        if len(component) > MAX_PATH_COMPONENT_LENGTH:
+        if len(component) > app_settings.PATH_MAX_COMPONENT_LENGTH:
             logger.warning("Path component length exceeded in: %s", path)
             return ""
 

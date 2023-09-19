@@ -25,3 +25,26 @@ Default: ``False``
 Wheter to show or hide breadcrumbs at site's root.
 
 
+DYNAMIC_BREADCRUMBS_PATH_ONLY_ALPHANUMERIC
+------------------------------------------
+
+Default: ``True``
+
+Only allows alphanumeric characters in breadcrumb item names. If
+someone contains non-alphanumeric values it will show an empty string.
+
+
+DYNAMIC_BREADCRUMBS_PATH_MAX_DEPTH
+----------------------------------
+
+Default: ``5``
+
+The maximum number of breadcrumb items to show
+
+
+DYNAMIC_BREADCRUMBS_PATH_MAX_COMPONENT_LENGTH
+---------------------------------------------
+
+Default: ``50``
+
+Each path component's maximum length.
