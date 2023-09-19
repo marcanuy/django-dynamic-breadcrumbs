@@ -156,6 +156,26 @@ class BreadcrumbsTests(TestCase):
         self.assertEqual(len(result), 0)
 
 
+    
+    @patch('dynamic_breadcrumbs.utils.BreadcrumbsItem._get_resolved_url_metadata')
+    def test_filter_xss_attacks(self, mock_resolve):
+        mock_resolve = False
+
+        app_settings.SHOW_AT_BASE_PATH = False
+        malicious_code = """
+        jaVasCript:/*-/*`/*\`/*'/*"/**/(/* */oNcliCk=alert() )//%0D%0A%0d%0a//</stYle/</titLe/</teXtarEa/</scRipt/--!>\x3csVg/<sVg/oNloAd=alert()//>\x3e
+        """
+        path = f"/level/{malicious_code}/leaf/"
+        breadcrumbs = Breadcrumbs(path=path)
+
+        result = breadcrumbs.as_list()
+        self.assertEqual(len(result), 0)
+
+
+    
+    
+
+
 # class BreadcrumbsItemTests(TestCase):
 #     def test_get_resolved_url_metadata_resolves_valid_path(self):
 #         item = BreadcrumbsItem(
