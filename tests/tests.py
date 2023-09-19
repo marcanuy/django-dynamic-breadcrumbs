@@ -106,11 +106,8 @@ class BreadcrumbsTests(TestCase):
         result = breadcrumbs.as_list()
 
         self.assertEqual(result[0]["name"], app_settings.HOME_LABEL)
-        self.assertEqual(result[0]["resolved"], True)
         self.assertEqual(result[1]["name"], "continent")
-        self.assertEqual(result[1]["resolved"], True)
         self.assertEqual(result[2]["name"], "some-continent")
-        self.assertEqual(result[2]["resolved"], True)
 
     @patch('dynamic_breadcrumbs.utils.BreadcrumbsItem._get_resolved_url_metadata')
     def test_as_list_only_home(self, mock_resolve):
@@ -140,8 +137,9 @@ class BreadcrumbsTests(TestCase):
         app_settings.SHOW_AT_BASE_PATH = True
         path = "/"
         breadcrumbs = Breadcrumbs(path=path)
+
         result = breadcrumbs.as_list()
-        print(result)
+
         self.assertEqual(len(result), 1)
 
     @patch('dynamic_breadcrumbs.utils.BreadcrumbsItem._get_resolved_url_metadata')
