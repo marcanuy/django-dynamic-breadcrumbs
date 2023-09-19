@@ -86,7 +86,7 @@ class Breadcrumbs:
     def _add_home(self):
         b_item = BreadcrumbsItem(
             base_url=self.base_url,
-            name_raw=app_settings.DYNAMIC_BREADCRUMBS_HOME_LABEL,
+            name_raw=app_settings.HOME_LABEL,
             path="/",
             position=1,
         )
@@ -99,7 +99,7 @@ class Breadcrumbs:
         # add home
         # if have to show home item, and location is home, shows it
         # or if location is not home, always shows home in breadcrumbs
-        if (app_settings.DYNAMIC_BREADCRUMBS_SHOW_AT_BASE_PATH and not parts) or parts:
+        if (app_settings.SHOW_AT_BASE_PATH and not parts) or parts:
             self._add_home()
 
         if parts == []:
@@ -135,7 +135,7 @@ class BreadcrumbsItem:
         return result
 
     def get_name(self):
-        if self.position == 2 and app_settings.DYNAMIC_BREADCRUMBS_SHOW_VERBOSE_NAME:
+        if self.position == 2 and app_settings.SHOW_VERBOSE_NAME:
             try:
                 return apps.get_app_config(self.name_raw).verbose_name
             except Exception:
