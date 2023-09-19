@@ -1,4 +1,3 @@
-import os
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent
@@ -15,4 +14,3 @@ ALLOWED_HOSTS = ["www.example.com"]
 SECRET_KEY = "foobar"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-

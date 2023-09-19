@@ -8,7 +8,6 @@ from django.utils.html import escape
 from django.urls import Resolver404, resolve
 
 from . import app_settings
-from django.conf import settings
 
 logger = logging.getLogger(__name__)
 
@@ -23,6 +22,7 @@ def sanitize_url(url):
         return ""
     return url
 
+
 def validate_path(path):
     """Validate the path to ensure it matches an expected pattern and is within allowed limits."""
     if not isinstance(path, str):
@@ -31,11 +31,11 @@ def validate_path(path):
 
     if app_settings.PATH_XSS_SAFE_MODE:
         # Ensure the path contains only alphanumeric characters, dashes, underscores, and slashes
-        if not re.match(r'^[a-zA-Z0-9_\-/]*$', path):
+        if not re.match(r"^[a-zA-Z0-9_\-/]*$", path):
             logger.warning("Invalid path provided: %s", path)
             return ""
 
-    components = path.split('/')
+    components = path.split("/")
     # Check path depth
     if len(components) > app_settings.PATH_MAX_DEPTH:
         logger.warning("Path depth exceeded for: %s", path)
@@ -48,6 +48,7 @@ def validate_path(path):
             return ""
 
     return path
+
 
 class Breadcrumbs:
     def __init__(self, base_url="", path=None):
@@ -107,8 +108,6 @@ class Breadcrumbs:
                 base_url=self.base_url, name_raw=item, path=path, position=i + 2
             )
             self.items.append(b_item)
-
-
 
 
 class BreadcrumbsItem:
