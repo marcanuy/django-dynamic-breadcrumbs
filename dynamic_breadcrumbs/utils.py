@@ -8,17 +8,54 @@ from django.utils.html import escape
 from django.urls import Resolver404, resolve
 
 from . import app_settings
+from django.conf import settings
 
 logger = logging.getLogger(__name__)
 
-ALLOWED_BASE_URLS = [settings.ALLOWED_HOSTS]  # Add your allowed base URLs here
+#ALLOWED_BASE_URLS = [settings.ALLOWED_HOSTS]  # Add your allowed base URLs here
 MAX_PATH_DEPTH = 5
 MAX_PATH_COMPONENT_LENGTH = 50
 
+
+def sanitize_url(url):
+    """Sanitize the URL to prevent malicious content."""
+    parsed_url = urlparse(url)
+
+    # Ensure the URL is in the allowed list
+    if parsed_url.hostname not in settings.ALLOWED_HOSTS:
+        logger.warning("Invalid base URL provided: %s", url)
+        return ""
+    return url
+
+def validate_path(path):
+    """Validate the path to ensure it matches an expected pattern and is within allowed limits."""
+    if not isinstance(path, str):
+        logger.warning("Invalid path type provided: %s", type(path))
+        return ""
+
+    # Ensure the path contains only alphanumeric characters, dashes, underscores, and slashes
+    if not re.match(r'^[a-zA-Z0-9_\-/]*$', path):
+        logger.warning("Invalid path provided: %s", path)
+        return ""
+
+    components = path.split('/')
+    # Check path depth
+    if len(components) > MAX_PATH_DEPTH:
+        logger.warning("Path depth exceeded for: %s", path)
+        return ""
+
+    # Check each path component's length
+    for component in components:
+        if len(component) > MAX_PATH_COMPONENT_LENGTH:
+            logger.warning("Path component length exceeded in: %s", path)
+            return ""
+
+    return path
+
 class Breadcrumbs:
     def __init__(self, base_url="", path=None):
-        self.base_url = self.sanitize_url(base_url)
-        self.path = self.validate_path(path)
+        self.base_url = sanitize_url(base_url)
+        self.path = validate_path(path)
         self.items = []
 
     def get_items(self):
@@ -74,39 +111,6 @@ class Breadcrumbs:
             )
             self.items.append(b_item)
 
-    def sanitize_url(self, url):
-        """Sanitize the URL to prevent malicious content."""
-        parsed_url = urlparse(url)
-        # Ensure the URL is in the allowed list
-        if parsed_url.geturl() not in ALLOWED_BASE_URLS:
-            logger.warning("Invalid base URL provided: %s", url)
-            return ""
-        return url
-
-    def validate_path(self, path):
-        """Validate the path to ensure it matches an expected pattern and is within allowed limits."""
-        if not isinstance(path, str):
-            logger.warning("Invalid path type provided: %s", type(path))
-            return ""
-
-        # Ensure the path contains only alphanumeric characters, dashes, underscores, and slashes
-        if not re.match(r'^[a-zA-Z0-9_\-/]*$', path):
-            logger.warning("Invalid path provided: %s", path)
-            return ""
-
-        components = path.split('/')
-        # Check path depth
-        if len(components) > MAX_PATH_DEPTH:
-            logger.warning("Path depth exceeded for: %s", path)
-            return ""
-
-        # Check each path component's length
-        for component in components:
-            if len(component) > MAX_PATH_COMPONENT_LENGTH:
-                logger.warning("Path component length exceeded in: %s", path)
-                return ""
-
-        return path
 
 
 

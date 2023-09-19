@@ -1,29 +1,50 @@
 from django.test import TestCase, override_settings
 
-from dynamic_breadcrumbs.utils import Breadcrumbs, BreadcrumbsItem
-from tests.models import Continent, Country, City
+from dynamic_breadcrumbs.utils import Breadcrumbs, BreadcrumbsItem, validate_path, sanitize_url
 from dynamic_breadcrumbs import app_settings
+from django.conf import settings
+from django.http import HttpResponse, HttpRequest
 
+@override_settings(ALLOWED_HOSTS="www.example.com")
+class SanitizeUrlTests(TestCase):
 
-@override_settings(ROOT_URLCONF="tests.urls")
-class GenericModelTestCase(TestCase):
-    @classmethod
-    def setUpTestData(cls):
-        Continent.objects.create(name="America", slug="america")
-        Country.objects.create(
-            name="República Oriental del Uruguay", slug="republica-oriental-uruguay"
-        )
-        City.objects.create(name="Montevideo", slug="monte-vidi-eu")
+    def test_sanitize_base_urls_host_in_allowed_hosts_keeps_url(self):
+        base_url= f"https://{settings.ALLOWED_HOSTS[0]}"
+        
+        result = sanitize_url(url=base_url)
+        
+        self.assertEqual(result, base_url)
 
+    def test_sanitize_base_urls_host_not_in_allowed_hosts_returns_empty_string(self):
+        base_url= "https://anothersite.com"
+        
+        result = sanitize_url(url=base_url)
+        
+        self.assertEqual(result, "")
 
-class BreadcrumbsTests(GenericModelTestCase):
+# class ValidatePathTests(GenericModelTestCase):
+#     def test_sanitize_base_urls_host_in_allowed_hosts_keeps_url(self):
+#         path= f"https://{settings.ALLOWED_HOSTS[0]}"
+        
+#         result = sanitize_url(url=base_url)
+        
+#         self.assertEqual(result, base_url)
+    
+
+class BreadcrumbsTests(TestCase):
     def setUp(self):
-        pass
+        self.host = settings.ALLOWED_HOSTS[0]
+
+        #response = self.client.get('/')
+        #request = HttpRequest().build_absolute_uri(location="/")
+        #print(request)
+
+        #self.breadcrumbs = Breadcrumbs(base_url=self.base_url)
 
     def test_split_path_ending_in_slash(self):
         path = "/scale/minor-scale/"
         expected_result = ["scale", "minor-scale"]
-        breadcrumbs = Breadcrumbs()
+
 
         paths = breadcrumbs._split_path(path=path)
 
@@ -104,7 +125,7 @@ class BreadcrumbsTests(GenericModelTestCase):
         self.assertEqual(len(result), 0)
 
 
-class BreadcrumbsItemTests(GenericModelTestCase):
+class BreadcrumbsItemTests(TestCase):
     def test_get_resolved_url_metadata_resolves_valid_path(self):
         item = BreadcrumbsItem(
             name_raw="some-continent", path="/continent/some-continent/", position=2
