@@ -7,6 +7,10 @@ SHOW_AT_BASE_PATH = getattr(
     settings, "DYNAMIC_BREADCRUMBS_SHOW_AT_BASE_PATH", False
 )
 
+SHOW_VERBOSE_NAME = getattr(
+    settings, "DYNAMIC_BREADCRUMBS_SHOW_VERBOSE_NAME", False
+)
+
 PATH_XSS_SAFE_MODE = getattr(
     settings, "DYNAMIC_BREADCRUMBS_PATH_XSS_SAFE_MODE", True
 )
