@@ -34,7 +34,7 @@ class ValidatePathTests(TestCase):
         self.assertEqual(result, "")
 
     def test_validate_path_check_alphanumeric_returns_empty_string(self):
-        app_settings.PATH_ALPHANUMERIC=True
+        app_settings.PATH_XSS_SAFE_MODE=True
         path="*%#$@@#*(/%#%_)*"
         
         result = validate_path(path=path)
@@ -42,7 +42,7 @@ class ValidatePathTests(TestCase):
         self.assertEqual(result, "")
     
     def test_validate_path_non_check_alphanumeric_returns_path(self):
-        app_settings.PATH_ALPHANUMERIC=False
+        app_settings.PATH_XSS_SAFE_MODE=False
         path="*%#$@@#*(/%#%_)*"
         
         result = validate_path(path=path)

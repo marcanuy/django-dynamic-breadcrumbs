@@ -29,7 +29,7 @@ def validate_path(path):
         logger.warning("Invalid path type provided: %s", type(path))
         return ""
 
-    if app_settings.PATH_ALPHANUMERIC:
+    if app_settings.PATH_XSS_SAFE_MODE:
         # Ensure the path contains only alphanumeric characters, dashes, underscores, and slashes
         if not re.match(r'^[a-zA-Z0-9_\-/]*$', path):
             logger.warning("Invalid path provided: %s", path)
