@@ -33,10 +33,11 @@ def validate_path(path):
         logger.warning("Invalid path type provided: %s", type(path))
         return ""
 
-    # Ensure the path contains only alphanumeric characters, dashes, underscores, and slashes
-    if not re.match(r'^[a-zA-Z0-9_\-/]*$', path):
-        logger.warning("Invalid path provided: %s", path)
-        return ""
+    if app_settings.PATH_ONLY_ALPHANUMERIC:
+        # Ensure the path contains only alphanumeric characters, dashes, underscores, and slashes
+        if not re.match(r'^[a-zA-Z0-9_\-/]*$', path):
+            logger.warning("Invalid path provided: %s", path)
+            return ""
 
     components = path.split('/')
     # Check path depth

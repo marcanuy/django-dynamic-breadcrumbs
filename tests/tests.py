@@ -4,8 +4,9 @@ from dynamic_breadcrumbs.utils import Breadcrumbs, BreadcrumbsItem, validate_pat
 from dynamic_breadcrumbs import app_settings
 from django.conf import settings
 from django.http import HttpResponse, HttpRequest
+from dynamic_breadcrumbs import app_settings
 
-@override_settings(ALLOWED_HOSTS="www.example.com")
+@override_settings(ALLOWED_HOSTS=["www.example.com"])
 class SanitizeUrlTests(TestCase):
 
     def test_sanitize_base_urls_host_in_allowed_hosts_keeps_url(self):
@@ -22,13 +23,29 @@ class SanitizeUrlTests(TestCase):
         
         self.assertEqual(result, "")
 
-# class ValidatePathTests(GenericModelTestCase):
-#     def test_sanitize_base_urls_host_in_allowed_hosts_keeps_url(self):
-#         path= f"https://{settings.ALLOWED_HOSTS[0]}"
+class ValidatePathTests(TestCase):
+    def test_validate_path_not_string_returns_empty_string(self):
+        path=3.1416
         
-#         result = sanitize_url(url=base_url)
+        result = validate_path(path=path)
         
-#         self.assertEqual(result, base_url)
+        self.assertEqual(result, "")
+
+    def test_validate_path_check_alphanumeric_returns_empty_string(self):
+        app_settings.PATH_ALPHANUMERIC=True
+        path="*%#$@@#*(/%#%_)*"
+        
+        result = validate_path(path=path)
+        
+        self.assertEqual(result, "")
+    
+    def test_validate_path_non_check_alphanumeric_returns_path(self):
+        app_settings.PATH_ALPHANUMERIC=False
+        path="*%#$@@#*(/%#%_)*"
+        
+        result = validate_path(path=path)
+        
+        self.assertEqual(result, path)
     
 
 class BreadcrumbsTests(TestCase):
