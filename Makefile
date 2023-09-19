@@ -20,6 +20,7 @@ tests-deps: install-pip
 
 tests-run:
 	PYTHONPATH=$$PWD:$$PYTHONPATH DJANGO_SETTINGS_MODULE=tests.settings django-admin test
+
 clean:
 	rm -fr build dist
 	find . -name "*~" -exec rm {} -v \;
