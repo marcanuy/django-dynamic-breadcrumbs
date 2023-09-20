@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+	<title>{% block title %}Geography site{% endblock %}</title>
+    </head>
+
+    <body>
+	<h1>{% block header %} Geography {% endblock %}</h1>
+	<div id="content">
+            {% block content %}{% endblock %}
+	</div>
+	<hr>
+	<h2>Breadcrumbs</h2>
+	{% if breadcrumbs %}
+	<div class="container">
+	    {% include "dynamic_breadcrumbs/breadcrumbs.html" with breadcrumbs=breadcrumbs%}
+	</div>
+	{% endif %}
+
+    </body>
+</html>

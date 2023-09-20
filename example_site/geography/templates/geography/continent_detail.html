@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Continent detail{% endblock %}
+{% block header %}{{object.name}}{% endblock %}
+
+{% block content %}
+<ul>
+    {% for object in object.country_set.all %}
+    <li>
+	<a href="{% url 'country-detail' continent_slug=continent_slug slug=object.slug%}">
+	    {{ object.name }}
+	</a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
