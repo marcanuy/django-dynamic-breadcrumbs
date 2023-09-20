@@ -68,6 +68,17 @@ it will have the breadcrumbs generated from the URL path.
 
 Tweak default [settings](https://django-dynamic-breadcrumbs.readthedocs.io/en/latest/ref/settings.html).
 
+# Example site
+
+There is an example site to see how it works at [example_site](https://github.com/marcanuy/django-dynamic-breadcrumbs/tree/main/example_site). To
+run it, in `example_site` directory: 
+
+1. Create db: `python manage.py migrate`
+2. Load fixtures `python manage.py loaddata fixtures.json`
+3. Run the server `python manage.py runserver`
+
+Note: Fixtures were created with a sample database with `./manage.py  dumpdata --all --format json -o fixtures.json`.
+
 # Documentation
 
 Full docs at: https://django-dynamic-breadcrumbs.readthedocs.io/
